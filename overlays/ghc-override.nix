@@ -19,7 +19,7 @@ self: super:
                 preConfigure = ''
                   ${old.preConfigure}
                   export LD="${targetCC.bintools}/bin/${targetCC.bintools.targetPrefix}ld"
-                  NIX_LDFLAGS+=" -latomic"
+                  export LDFLAGS+=" -latomic"
                 '';
                 configureFlags = builtins.filter notGoldFlag (old.configureFlags or []);
               });
