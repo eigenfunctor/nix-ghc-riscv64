@@ -1,6 +1,6 @@
 self: super:
   let
-    ghcVersion = "ghc8104";
+    ghcVersion = "ghc8107";
     targetCC = super.pkgsBuildTarget.targetPackages.stdenv.cc;
     notGoldFlag = flag: (builtins.match ".*gold.*" flag) == null;
   in {
