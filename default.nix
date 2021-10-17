@@ -4,12 +4,10 @@ let
     (import ./overlays/libuv.nix)
     (import ./overlays/ghc-override.nix)
   ];
-
-  crossSystem = (import <nixpkgs> {}).lib.systems.examples.riscv64;
 in
 
-{ pkgs ? import <nixpkgs> { inherit overlays crossSystem; } }:
+{ pkgs ? import <nixpkgs> { inherit overlays; } }:
 
-with pkgs;
+with pkgs.pkgsCross.riscv64;
 
 haskellPackages.ghc
