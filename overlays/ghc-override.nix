@@ -22,6 +22,13 @@ self: super:
                   export LDFLAGS+=" -latomic"
                 '';
                 configureFlags = builtins.filter notGoldFlag (old.configureFlags or []);
+                postInstall = ''
+                  ${old.postInstall or ""}
+                  mkdir -p $out/build
+                  cp -ra . $out/build
+                  mkdir -p $out/build/ghc/stage2/build/tmp
+                  cp $out/bin/${super.stdenv.targetPlatform.config}-ghc-${old.version} $out/build/ghc/stage2/build/tmp/ghc-stage2
+                '';
               });
             in ghcWithAtomicFix;
         });
